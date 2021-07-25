@@ -7,23 +7,38 @@ public class Arm : MonoBehaviour
     [SerializeField]
     ArmSegment SegmentPrefab;
 
+    Target Target;
+
     [SerializeField, Range(0, 10)]
     int NbSegment;
 
     readonly List<ArmSegment> segments = new List<ArmSegment>();
 
+    private void Start()
+    {
+        Target = FindObjectOfType<Target>();
+    }
+
     private void OnEnable()
     {
+        Vector3 target = transform.position;
         for(int i = 0; i < NbSegment; i++)
         {
-            Vector3 target = transform.position;
-
-            if (segments.Count > 0)
-                target = segments[segments.Count - 1].frontJoint.position;
-
             ArmSegment segment = Instantiate(SegmentPrefab, transform);
-            segment.Anchor(target);
+            target = segment.Anchor(target);
             segments.Add(segment);
         }
+    }
+
+    private void Update()
+    {
+        Vector3 TargetPoint = Target.transform.position;
+
+        for (int i = 0; i < segments.Count; i++)
+            TargetPoint = segments[i].Anchor(TargetPoint, true);
+
+        TargetPoint = transform.position;
+        for (int i = segments.Count - 1; i >= 0; i--)
+            TargetPoint = segments[i].Anchor(TargetPoint);
     }
 }

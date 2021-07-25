@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3c3a4803b7c9948ad04272c6e8003c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontJoint: {fileID: 5265222413921708220}
+  FrontJoint: {fileID: 5265222413921708220}
   BackJoint: {fileID: 7328323803070500030}
 --- !u!1 &7933498184141566224
 GameObject:
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 5265222413921708220}
   - component: {fileID: 6527761915093449857}
   m_Layer: 0
-  m_Name: frontJoint
+  m_Name: FrontJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
